@@ -1,0 +1,45 @@
+    
+{% extends "game/base.html" %}
+{% block body_block %}
+{% load static %}
+
+<div class="bg-light">
+  <div class="container  py-5">
+    <div class="p-5 mb-4 bg-white rounded-3">
+      <h1 class="display-5 fw-bold mb-3">Join Team</h1>
+      <div class="row align-items-md-stretch" style="user-select: auto;">
+          
+          <div class="col-md-6" style="user-select: auto;">
+            <div class="h-100 bg-light border rounded-3" style="user-select: auto;">
+              
+              <img style="height: 450px" class="img-fluid w-100 h-100 rounded-3" src="{% static 'game/images/join-team.jpg' %}" alt="join team">
+              
+          </div>
+          
+      </div>
+      <div class="col-md-6" style="user-select: auto;">
+        <div class="h-100 p-5 bg-light border rounded-3" style="user-select: auto;">
+            <h2 style="user-select: auto;">Join a Team</h2>
+            <form action="{% url 'jointeam' %}" method="post">
+                {% csrf_token %}
+            <input autofocus autocapitalize="none" maxlength="150" class="textinput textInput form-control mt-5" required type="text" name="teamcode" placeholder="Enter team code">
+
+            
+            <input class="btn btn-primary mt-2" id="team_submit" type="submit" value="Join">
+
+            <a type="button" class=" mt-2 btn btn-dark" href="{% url 'index' %}">Home</a>
+            
+            <div class="mt-3">
+                {% if message %}
+                {{ message}}
+                {% endif %}
+            </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

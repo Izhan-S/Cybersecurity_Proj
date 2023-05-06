@@ -1,0 +1,32 @@
+{% extends "game/base.html" %}
+{% block body_block %}
+
+<div class="bg-light">
+  <div class="container  py-5">
+    <div class="p-5 mb-4 bg-white rounded-3">
+      <h1 class="display-5 fw-bold mb-3">{{ module }}</h1>
+      <div class="row align-items-md-stretch" style="user-select: auto;">
+        <div class="h-100 p-5 bg-light border rounded-3" style="user-select: auto;">
+            {{module.intro|safe}}
+            <p>You'll be presented with scenarios from the following modules:</p>
+            
+            <ul>
+            {% for g in module.games.all %}
+             <li>{{g.game.name}}</li>
+            {% endfor %}
+            </ul>
+
+            <p>In order to proceed with this module, it is recommended that you finish the individual exercises for all these cyber security attack vectors. </p>
+        </div>        
+      
+    </div>
+    
+    <div class="container py-3 text-center">
+    <a type="button" class="btn btn-dark" href="{% url 'index' %}">Back to Home</a>
+    <a type="button" class="btn btn-dark" href="{% url 'play_module_segment' id=module.id seg_id=seg.id cur_q_id=0 ans=0  option='X' %}">Proceed To Module</a>
+    </div>
+
+    </div>
+  </div>
+</div>
+{% endblock %}

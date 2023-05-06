@@ -1,0 +1,76 @@
+    
+{% extends "game/base.html" %}
+{% block body_block %}
+{% load static %}
+{% load dict_key %}
+
+<div class="bg-light">
+  <div class="container  py-5">
+    <div class="p-5 mb-4 bg-white rounded-3">
+      <h1 class="display-5 fw-bold mb-3">Module Results</h1>
+      <div class="row align-items-md-stretch" style="user-select: auto;">
+        
+        {% for k,v in result_set.items %} 
+          {% if v.percent_score >= 60 %}
+          <div class="container py-2">
+            <div class="progress">
+              <div class="progress-bar bg-info" role="progressbar" style="width: {{v.percent_score}}%" aria-valuenow="{{v.percent_score}}" aria-valuemin="0" aria-valuemax="100">{{k}} : {{v.percent_score}}%</div>
+            </div>
+          </div>
+          {% else %}
+          <div class="container py-2">
+            <div class="progress">
+              <div class="progress-bar bg-danger" role="progressbar" style="width: {{v.percent_score}}%" aria-valuenow="{{v.percent_score}}" aria-valuemin="0" aria-valuemax="100">{{k}} : {{v.percent_score}}%</div>
+            </div>
+          </div>
+          {% endif%}
+          
+        {% endfor %}
+
+        <div class="container py-2">
+        <p>Good Job on completing the module.</p>
+
+        {% if atleast_one_passed %}
+          <p>You have sucessfully cleared the exercise for the following cyber security task(s):</p>
+          <ul>
+            {% for k,v in result_set.items %} 
+            {% if v.percent_score >= 60 %}
+            <li>{{k}}</li>
+            {% endif%}
+            {% endfor %}
+            
+          </ul>
+        {% endif%}
+
+        {% if atleast_one_retake %}
+          <p>Unfortunately your overall score for below exercise(s) was less than passing threshold:</p>
+          <ul>
+            {% for k,v in result_set.items %} 
+            {% if v.percent_score < 60 %}
+            <li>{{k}}</li>
+            {% endif%}
+            {% endfor %}            
+          </ul>
+          <p>Please proceed to training of these respective exercises by clicking the below buttons</p>
+            {% for k,v in result_set.items %} 
+            {% if v.percent_score < 60 %}
+            <div><a type="button" class="my-1 btn btn-dark" href="{% url 'play_game' v.g_id %}">{{k}}
+                </a>
+                 </div>
+            {% endif%}
+            {% endfor %} 
+
+        {% endif%}
+
+      </div>
+
+      <hr>
+      <hr>
+      <div><a type="button" class="mt-2 btn btn-dark" href="{% url 'index' %}">Home</a></div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

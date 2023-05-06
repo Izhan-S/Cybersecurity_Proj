@@ -1,0 +1,33 @@
+{% extends "game/base.html" %}
+{% block body_block %}
+{% load static %}
+
+<div class="bg-light">
+  <div class="container  py-5">
+    <div class="p-5 mb-4 bg-white rounded-3">
+      <h1 class="display-5 fw-bold mb-3">{{ game }}</h1>
+      <div class="row align-items-md-stretch" style="user-select: auto;">
+      
+      <div class="col-md-6" style="user-select: auto;">
+        <div class="h-100 p-5 bg-light border rounded-3" style="user-select: auto;">
+        <h2 style="user-select: auto;">Question {{display_q}}</h2>
+       {{question.scenario|safe}}
+
+       <a type="button" class="btn btn-dark" href="{% url 'play_game_question' id=game.id cur_q_id=cur_q_id ans=1 %}">Yes</a>
+
+       <a type="button" class="btn btn-dark" href="{% url 'play_game_question' id=game.id cur_q_id=cur_q_id ans=0 %}">No</a>
+
+     </div>
+      </div>
+      <div class="col-md-6" style="user-select: auto;">
+        <div class="h-100 bg-light border rounded-3" style="user-select: auto;">
+          
+          <img style="height: 450px" class="img-fluid w-100 rounded-3" src="{{ question.image.url }}" alt="{{question}}">
+          
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

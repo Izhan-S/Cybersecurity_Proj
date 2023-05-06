@@ -1,0 +1,67 @@
+{% extends "game/base.html" %}
+{% block body_block %}
+{% load static %}
+{% load crispy_forms_tags %}
+<div class="bg-light">
+  <div class="container  py-5">
+    <div class="p-5 mb-4 bg-white rounded-3">
+      <h1 class="display-5 fw-bold mb-3">{{ game }}</h1>
+      <div class="row align-items-md-stretch" style="user-select: auto;">
+
+        <div class="col-md-8" style="user-select: auto;">
+          <div class="h-100 p-5  bg-light border rounded-3" style="user-select: auto;">
+            <div class="col-md-10">
+              <h1 class="mt-2">Register</h1>
+              <hr class="mt-0 mb-4">
+
+              <form action="{% url 'register' %}" method="post">
+
+                <div class="mb-2"> 
+                    <!-- <label for="username" class="form-label requiredField">
+                        Username<span class="asteriskField">*</span> </label> -->
+
+                        <input autofocus autocapitalize="none" autocomplete="username" maxlength="150" class="textinput textInput form-control" required type="text" name="username" placeholder="Username">
+
+                    </div>
+                    
+                    <div class="mb-2">
+
+                        <!-- <label for="email" class="form-label requiredField">
+                            Email<span class="asteriskField">*</span> </label> -->
+
+                            <input autocapitalize="none" autocomplete="email" class="textinput textInput form-control" required type="email" name="email" placeholder="Email">
+                        </div>
+
+                        <div class="mb-2"> <input autocapitalize="none" class="textinput textInput form-control" required type="password" name="password" placeholder="Password"></div>
+                        <div class="mb-3"><input autocapitalize="none" class="textinput textInput form-control" type="password" name="confirmation-password" placeholder="Repeat Password"></div>
+                        <div class="mb-2">
+                            <input class="btn btn-primary mb-2 me-2" type="submit" value="Register">
+                            <a href="{% url 'login' %}" class="btn btn-dark mb-2 me-2">Login</a>
+                        </div>
+                        {% if message %}
+                        <div class="mb-1">{{ message }}</div>
+                        {% endif %}
+                        
+                        {% csrf_token %}
+                    </form>
+
+
+                    <!-- <hr class="mt-0 mb-2"> -->
+
+
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4" style="user-select: auto;">
+          <div class="h-100 bg-light border rounded-3" style="user-select: auto;">
+
+            <img style="height: 450px" class="img-fluid w-100 rounded-3" src="{% static 'game/images/login.jpg' %}" alt="register">
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

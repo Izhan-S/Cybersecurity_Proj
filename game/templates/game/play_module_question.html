@@ -1,0 +1,88 @@
+{% extends "game/base.html" %}
+{% block body_block %}
+{% load static %}
+<div class="container-fluid" style="height: 100vh">
+<div class="bg-light h-100">
+  <div class="container py-5 text-center">
+    <div class="p-5 mb-4 bg-white rounded-3">
+      
+      <div class="row align-items-md-stretch flex-grow-1" style="user-select: auto;">
+      
+      
+        <div class="h-100 p-5 bg-light border rounded-3" style="user-select: auto;">
+        
+       {{seg_q.scenario|safe}}
+
+     </div>
+    
+
+    </div>
+    <div id='yes_no' class="container py-3">
+        <a type="button" class="btn btn-dark" id='yes_btn'>Yes</a>
+
+       <a type="button" class="btn btn-dark" href="{% url 'play_module_segment' id=id seg_id=seg cur_q_id=seg_q.id ans=0 option='X' %}">No</a>
+    </div>
+<br>
+
+<div id='form_choices' style="display: none;" >
+  <p>What could be the possible threat?</p>
+
+   <input class="form-check-input" type="radio" id="A_input" name="option" value="A">
+   <label for="A_input" id='A_label'>Option A</label><br>
+
+   <input class="form-check-input" type="radio" id="B_input" name="option" value="B">
+   <label for="B_input" id='B_label'>Option B</label><br>
+
+   <input class="form-check-input" type="radio" id="C_input" name="option" value="C">
+   <label for="C_input" id='C_label'>Option C</label>
+  <br><br>
+  <a type="button" id='options_button' class="btn btn-dark">Submit</a>
+</div>
+
+    </div>
+
+
+  </div>
+</div>
+</div>
+{% endblock %}
+
+
+{% block jq_block %}
+<script type="text/javascript">
+
+$(document).ready(function () {
+  //$("#form_choices").hide()
+  $("#yes_btn").click(function(){
+    $("#yes_no").hide()
+    $.get("{% url 'get_module_question_options' seg_q_id=seg_q.id %}", function(data, status){
+      if(data.option_A=='wrong'){
+        window.location.replace("{% url 'play_module_segment' id=id seg_id=seg cur_q_id=seg_q.id ans=1 option='X' %}");
+      }else{
+        // $("#A_input").val(data.option_A);
+        // $("#B_input").val(data.option_B);
+        // $("#C_input").val(data.option_C);
+
+        $("#A_label").text(data.option_A);
+        $("#B_label").text(data.option_B);
+        $("#C_label").text(data.option_C);
+        $("#form_choices").show();
+
+        //alert("Data: " + data.option_A + "\nStatus: " + status);
+      } 
+    });
+  });
+  
+  $("#options_button").click(function(event) {
+    var selectedVal = "";
+    var selected = $("input[type='radio']:checked");
+    if (selected.length > 0) {
+        selectedVal = selected.val(); 
+        redirect_url = "{% url 'play_module_segment' id=id seg_id=seg cur_q_id=seg_q.id ans=1 option='X' %}";
+        window.location.replace(redirect_url.replace('X',selectedVal.substring(0,1).toUpperCase()));
+    }
+  });
+});
+
+</script>
+{% endblock %}

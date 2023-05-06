@@ -1,0 +1,43 @@
+
+{% extends "game/base.html" %}
+{% block body_block %}
+{% load static %}
+{% load crispy_forms_tags %}
+<div class="bg-light">
+  <div class="container  py-5">
+    <div class="p-5 mb-4 bg-white rounded-3">
+      <h1 class="display-5 fw-bold mb-3">{{ game }}</h1>
+      <div class="row align-items-md-stretch" style="user-select: auto;">
+
+        <div class="col-md-8" style="user-select: auto;">
+          <div class="h-100 p-5  bg-light border rounded-3" style="user-select: auto;">
+            <div class="col-md-10">
+              <h1 class="mt-2">Log In</h1>
+              <hr class="mt-0 mb-4">
+
+              <form method="post">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <button type="submit" class="btn btn-primary mb-2">Login</button>
+              </form>
+
+              
+              <hr class="mt-0 mb-2">
+
+
+              <a href="{% url 'register' %}" class="btn btn-dark">Register</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4" style="user-select: auto;">
+          <div class="h-100 bg-light border rounded-3" style="user-select: auto;">
+
+            <img style="height: 450px" class="img-fluid w-100 rounded-3" src="{% static 'game/images/login.jpg' %}" alt="login">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

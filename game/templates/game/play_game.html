@@ -1,0 +1,32 @@
+{% extends "game/base.html" %}
+{% block body_block %}
+
+<div class="bg-light">
+  <div class="container  py-5">
+    <div class="p-5 mb-4 bg-white rounded-3">
+      <h1 class="display-5 fw-bold mb-3">{{ game }}</h1>
+      <div class="row align-items-md-stretch" style="user-select: auto;">
+      
+      <div class="col-md-6" style="user-select: auto;">
+        <div class="h-100 bg-light border rounded-3" style="user-select: auto;">
+          
+
+          <video class='img-fluid w-100 h-100 rounded-3' controls>
+            <source src="{{ game.video.url }}">
+          Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      <div class="col-md-6" style="user-select: auto;">
+        <div class="h-100 p-5 bg-light border rounded-3" style="user-select: auto;">
+          <h2 style="user-select: auto;">Training</h2>
+          <p>Play the video to learn about {{game}} and then start the game.</p>
+          <p>Only one member of a team should play the game, this activity is a team activity and every member should contribute</p>
+          <a type="button" class="btn btn-dark" href="{% url 'play_game_scenario' id=game.id %}">Begin Game</a>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

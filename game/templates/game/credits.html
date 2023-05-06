@@ -1,0 +1,28 @@
+
+{% extends "game/base.html" %}
+{% block body_block %}
+{% load static %}
+
+<div class="bg-light">
+  <div class="container  py-5">
+    <div class="p-5 mb-4 bg-white rounded-3">
+      <h1 class="display-5 fw-bold mb-3">Credits</h1>
+      <div class="row align-items-md-stretch" style="user-select: auto;">
+      
+        <div class="h-100 p-5 bg-light border rounded-3" style="user-select: auto;">
+        
+        <ul>
+          {% for credit in credits %}
+            <li>{{credit.credit_text|safe}}</li>
+          {% endfor %}
+          </ul>
+
+          <a type="button" class=" mt-2 btn btn-dark" href="{% url 'index' %}">Home</a>
+     </div>
+    
+      
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

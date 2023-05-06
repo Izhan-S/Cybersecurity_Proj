@@ -1,0 +1,26 @@
+{% extends "game/base.html" %}
+{% block body_block %}
+
+<div class="bg-light">
+  <div class="container  py-5">
+    <div class="p-5 mb-4 bg-white rounded-3  text-center">
+      <!-- <h1 class="display-5 fw-bold mb-3">{{ seg.name }}</h1> -->
+      <div class="row align-items-md-stretch" style="user-select: auto;" >
+        <div class="h-100" style="user-select: auto;" >
+          
+          <video class='img-fluid w-100 h-100 rounded-3' controls>
+            <source src="{{ seg.video.url }}">
+          Your browser does not support the video tag.
+          </video>
+        </div>
+
+
+        
+      
+    </div>
+    <a type="button" class="btn btn-dark" href="{% url 'play_module_question' id=id seg_id=seg.id cur_q_id=seg_q ans=ans %}">Segment Question</a>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
