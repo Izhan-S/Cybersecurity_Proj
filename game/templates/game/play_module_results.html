@@ -51,14 +51,14 @@
             {% endif%}
             {% endfor %}            
           </ul>
-          <p>Please proceed to training of these respective exercises by clicking the below buttons</p>
-            {% for k,v in result_set.items %} 
+          <!-- <p>Please proceed to training of these respective exercises by clicking the below buttons</p> -->
+            <!-- {% for k,v in result_set.items %} 
             {% if v.percent_score < 60 %}
             <div><a type="button" class="my-1 btn btn-dark" href="{% url 'play_game' v.g_id %}">{{k}}
                 </a>
                  </div>
-            {% endif%}
-            {% endfor %} 
+            {% endif%} -->
+            <!-- {% endfor %}  -->
 
         {% endif%}
 
