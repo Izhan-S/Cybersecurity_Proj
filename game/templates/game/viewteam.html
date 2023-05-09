@@ -6,7 +6,7 @@
 <div class="bg-light">
   <div class="container  py-5">
     <div class="p-5 mb-4 bg-white rounded-3">
-      <h1 class="display-5 fw-bold mb-3">Games</h1>
+      <h1 class="display-5 fw-bold mb-3">Game</h1>
       <div class="row align-items-md-stretch" style="user-select: auto;">
 
 
@@ -29,15 +29,17 @@
                     {% endfor %}
                 </ul>
 
-                <h2 style="user-select: auto;">Games</h2>
-
-                {% for g in game %}
+                <h2 style="user-select: auto;">Final Module</h2>
+                <a type="button" class="my-1 btn btn-dark" href="/play_module/1">
+                  Final Module
+                </a>
+                <!-- {% for g in game %}
 
                 <div><a type="button" class="my-1 btn btn-dark" href="{% url 'play_game' g.id %}">{{g.name}}
                 </a>
                  </div>
 
-                {% endfor %} 
+                {% endfor %}  -->
                 <hr>
                 <div><a type="button" class="mt-2 btn btn-dark" href="{% url 'index' %}">Home</a></div>
 

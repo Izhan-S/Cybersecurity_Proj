@@ -60,7 +60,7 @@ class module_question(models.Model):
     option_C = models.CharField(max_length=1000)
     right_option = models.CharField(max_length=1, default='A')
     def __str__(self):
-        return f"{self.game}, {self.scenario[:75]}"
+        return f"{self.segment} {self.game}"
 
 class team(models.Model):
     name = models.CharField(max_length=1000, unique=True)
